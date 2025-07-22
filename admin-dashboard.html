@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Absensi PKL</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard active">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <i class="fas fa-user-shield"></i>
+                Absensi PKL - Admin
+            </div>
+            <div class="navbar-user">
+                <span id="adminName">Admin</span>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Keluar
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-content">
+            <div class="current-time">
+                <div class="time-display" id="currentTime">00:00:00</div>
+                <div class="date-display" id="currentDate">Loading...</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" id="totalSiswa">0</div>
+                    <div class="stat-label">Total Siswa</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-number" id="hadirHariIni">0</div>
+                    <div class="stat-label">Hadir Hari Ini</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-times"></i>
+                    </div>
+                    <div class="stat-number" id="tidakHadirHariIni">0</div>
+                    <div class="stat-label">Tidak Hadir Hari Ini</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-number" id="persentaseHariIni">0%</div>
+                    <div class="stat-label">Persentase Hari Ini</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-filter"></i>
+                    Filter Data
+                </div>
+                <div class="card-body">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                        <div class="form-group">
+                            <label for="filterSiswa">Pilih Siswa</label>
+                            <select id="filterSiswa"
+                                style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px;">
+                                <option value="">Semua Siswa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filterTanggal">Tanggal</label>
+                            <input type="date" id="filterTanggal"
+                                style="width: 100%; padding: 10px; border: 2px solid #e1e5e9; border-radius: 8px;">
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="button" class="btn btn-primary" onclick="filterData()">
+                                <i class="fas fa-search"></i>
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Data Absensi Siswa
+                    <button class="btn btn-success" style="float: right;" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        Export Excel
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div style="overflow-x: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Tanggal</th>
+                                    <th>Tempat PKL</th>
+                                    <th>Guru Pembimbing</th>
+                                    <th>Jam Berangkat</th>
+                                    <th>Jam Pulang</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allAttendanceData">
+                                <tr>
+                                    <td colspan="9" style="text-align: center; color: #666;">Memuat data...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

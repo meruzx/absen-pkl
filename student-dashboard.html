@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Siswa - Absensi PKL</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard active">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <i class="fas fa-graduation-cap"></i>
+                Absensi PKL - Siswa
+            </div>
+            <div class="navbar-user">
+                <span id="studentName">Loading...</span>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Keluar
+                </button>
+            </div>
+        </nav>
+
+        <div class="dashboard-content">
+            <div class="current-time">
+                <div class="time-display" id="currentTime">00:00:00</div>
+                <div class="date-display" id="currentDate">Loading...</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-number" id="totalHadir">0</div>
+                    <div class="stat-label">Total Hadir</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-times"></i>
+                    </div>
+                    <div class="stat-number" id="totalTidakHadir">0</div>
+                    <div class="stat-label">Total Tidak Hadir</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-number" id="persentaseKehadiran">0%</div>
+                    <div class="stat-label">Persentase Kehadiran</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard-check"></i>
+                    Form Absensi Harian
+                </div>
+                <div class="card-body">
+                    <form id="attendanceForm" class="attendance-form">
+                        <div class="form-group">
+                            <label for="tempatPKL">Tempat PKL</label>
+                            <input type="text" id="tempatPKL" name="tempatPKL" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guruPembimbing">Guru Pembimbing</label>
+                            <input type="text" id="guruPembimbing" name="guruPembimbing" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jamBerangkat">Jam Berangkat</label>
+                            <input type="time" id="jamBerangkat" name="jamBerangkat" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jamPulang">Jam Pulang</label>
+                            <input type="time" id="jamPulang" name="jamPulang">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <textarea id="keterangan" name="keterangan" rows="3"
+                                style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 10px; resize: vertical;"></textarea>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Simpan Absensi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <i class="fas fa-history"></i>
+                    Riwayat Absensi
+                </div>
+                <div class="card-body">
+                    <div style="overflow-x: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Tempat PKL</th>
+                                    <th>Guru Pembimbing</th>
+                                    <th>Jam Berangkat</th>
+                                    <th>Jam Pulang</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceHistory">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; color: #666;">Belum ada data absensi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="student.js"></script>
+</body>
+
+</html>
